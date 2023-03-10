@@ -6,4 +6,4 @@ inline: true
 ---
 
 
-I attend the at  [VS3 summer school](http://cmp.felk.cvut.cz/summerschool2022/index.html) in Prague, Czech Republic 🇨🇿
+I attend the at  [VS3 summer school](http://cmp.felk.cvut.cz/summerschool2022/index.html) in Prague, Czech Republic
