@@ -87,7 +87,7 @@
           {%- endif -%}
           {%- capture periodical -%}{{ entrytype }}{{ entrymonth }}{{ entryyear }}{%- endcapture -%}
           {%- if entry.oral -%}
-            Oral
+            " Oral "
           {%- endif -%}
           <div class="periodical">
             {{ periodical | strip }}
