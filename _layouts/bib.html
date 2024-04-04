@@ -89,10 +89,10 @@
           
           <div class="periodical">
             {{ periodical | strip }}
-            {%- if entry.oral -%}
-                  {{ " <b>Oral</b>" }} 
-            {%- endif -%}
           </div>
+          {%- if entry.oral -%}
+             <span style="color: rgb(255, 156, 64)">Oral (0.8% = 90/11,532)</span> 
+          {%- endif -%}
         {%- endif %}
         
           <!-- Links/Buttons -->
