@@ -22,7 +22,8 @@
           <div class="title">{{entry.title}}</div>
           <!-- Author -->
           <div class="author">
-          {%- for author in entry.author_array -%}
+                {{entry.author}}
+<!--           {%- for author in entry.author_array -%}
             {%- assign author_is_self = false -%}
             {%- if author.last == site.scholar.last_name%}
               {%- if site.scholar.first_name contains author.first -%}
@@ -68,7 +69,7 @@
                 {%- endif -%}
               {%- endunless -%}
             {%- endif -%}
-          {%- endfor %}
+          {%- endfor %} -->
           </div>
 
           <!-- Journal/Book title and date -->
