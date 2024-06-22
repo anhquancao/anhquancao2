@@ -29,7 +29,7 @@ I am a PhD student in the [astra-vision group](https://astra-vision.github.io/) 
 <b>I am actively seeking research opportunities in academia and industry, as my PhD will be completed in October 2024. If you're interested in connecting, please feel free to contact me.</b>
 
 My current research is focused on 3D computer vision, particularly 3D scene understanding from 2D image(s), working under the supervision of 
-<a href="https://team.inria.fr/rits/membres/raoul-de-charette/" target="_blank">Raoul de Charette</a>.
+<a href="https://team.inria.fr/rits/membres/raoul-de-charette/" target="_blank">Raoul de Charette (Directeur de Recherche, Inria) </a>.
 
 
 
