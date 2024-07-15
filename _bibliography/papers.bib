@@ -33,8 +33,8 @@
 
 @inproceedings{cao2024latteclip,
     title={LatteCLIP: Unsupervised CLIP Fine-Tuning via LMM-Synthetic Texts}, 
-    authors={Anh-Quan Cao, Maximilian Jaritz, Matthieu Guillaumin (Amazon), Raoul de Charette, Loris Bazzani},
-    booktitle={CVPR},
+    authors={Anh-Quan Cao, Maximilian Jaritz, Matthieu Guillaumin, Raoul de Charette, Loris Bazzani},
+    booktitle={arXiv},
     year={2024},
     abstract={
 Large-scale vision-language pre-trained (VLP) models (e.g., CLIP) are renowned for their versatility, as they can be applied to diverse applications in a zero-shot setup. However, when these models are used in specific domains, their performance often falls short due to domain gaps or the under-representation of these domains in the training data. While fine-tuning VLP models on custom datasets with human-annotated labels can address this issue, annotating even a small-scale dataset (e.g., 100k samples) can be an expensive endeavor, often requiring expert annotators if the task is complex. To address these challenges, we propose LatteCLIP, an unsupervised method to fine-tune CLIP models for custom domains without relying on human annotations. Our method leverages Large Multimodal Models (LMMs) to generate expressive textual descriptions for both individual images and groups of images. These provide additional contextual information to guide the fine-tuning process in the custom domains. Since LMM-generated descriptions are prone to hallucination or missing details, we introduce a novel strategy to distill only the useful information and stabilize the training. Specifically, we learn per-class prototype representations, that combine noisy generated texts and pseudo-labels in a single vector. Our experiments on 10 domain-specific datasets show that LATTECLIP outperforms pre-trained zero-shot methods by an average improvement of +4.74 points in top-1 accuracy and other state-of-the-art unsupervised methods by +3.45 points.
