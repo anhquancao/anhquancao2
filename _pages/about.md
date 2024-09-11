@@ -26,7 +26,6 @@ Link to your social media connections, too. This theme is set up to use [Font Aw
 
 I am a PhD student in the [astra-vision group](https://astra-vision.github.io/) in [Inria](https://www.inria.fr/en) - [Valeo](https://www.valeo.com/en/) joint team, named ASTRA, focused on Autonomous Driving. 
 
-<b>I am actively seeking research opportunities in academia and industry, as my PhD will be completed in October 2024. If you're interested in connecting, please feel free to contact me.</b>
 
 My current research is focused on 3D computer vision, particularly 3D scene understanding from 2D image(s), working under the supervision of 
 <a href="https://team.inria.fr/rits/membres/raoul-de-charette/" target="_blank">Raoul de Charette (Directeur de Recherche, Inria) </a>.
