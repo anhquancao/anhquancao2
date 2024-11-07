@@ -8,9 +8,8 @@ profile:
   align: right
   image: quan.png
   address: >
-    <p>🏢 Room 101</p> 
-    <p>Inria, 2 Rue Simone IFF</p>
-    <p>75012 Paris, France</p>
+    <p>🏢 Inria, 48 Rue Barrault</p>
+    <p>75013 Paris, France</p>
 
 news: true  # includes a list of news items
 selected_papers: false # includes a list of papers marked as "selected={true}"
