@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://anhquancao.github.io//feed.xml" rel="self" type="application/atom+xml"/><link href="https://anhquancao.github.io//" rel="alternate" type="text/html" hreflang="en"/><updated>2024-12-17T13:04:39+00:00</updated><id>https://anhquancao.github.io//feed.xml</id><title type="html">Anh-Quan Cao, PhD student at Inria, Paris, France</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design. </subtitle><entry><title type="html">How to define viewpoint programmatically in Mayavi</title><link href="https://anhquancao.github.io//blog/2022/how-to-define-viewpoint-programmatically-in-mayavi/" rel="alternate" type="text/html" title="How to define viewpoint programmatically in Mayavi"/><published>2022-06-13T00:00:00+00:00</published><updated>2022-06-13T00:00:00+00:00</updated><id>https://anhquancao.github.io//blog/2022/how-to-define-viewpoint-programmatically-in-mayavi</id><content type="html" xml:base="https://anhquancao.github.io//blog/2022/how-to-define-viewpoint-programmatically-in-mayavi/"><![CDATA[<p><strong>Note</strong>: If you have trouble installing Mayavi, you can take a look at my post: <a href="https://anhquancao.github.io/blog/2022/how-to-install-mayavi-with-python-3-on-ubuntu-2004-using-pip-or-anaconda/">How to install Mayavi</a>.</p> <h1 id="problem">Problem</h1> <p>Given the following Python code</p> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import numpy as np
+from mayavi import mlab
+
+n = 8
+t = np.linspace(-np.pi, np.pi, n)
+z = np.exp(1j * t)
+x = z.real.copy()
+y = z.imag.copy()
+z = np.zeros_like(x)
+
+triangles = [(0, i, i + 1) for i in range(1, n)]
+x = np.r_[0, x]
+y = np.r_[0, y]
+z = np.r_[1, z]
+t = np.r_[0, t]
+
+
+mlab.triangular_mesh(x, y, z, triangles, scalars=t)
+mlab.show()
+</code></pre></div></div> <p>When we run it, Mayavi draws the shape using the <strong>default viewpoint</strong></p> <figure> <picture> <source media="(max-width: 480px)" srcset="/assets/img/blog/draw_mayavi/fig_1-480.webp"/> <source media="(max-width: 800px)" srcset="/assets/img/blog/draw_mayavi/fig_1-800.webp"/> <source media="(max-width: 1400px)" srcset="/assets/img/blog/draw_mayavi/fig_1-1400.webp"/> <img class="img-fluid rounded z-depth-1" src="/assets/img/blog/draw_mayavi/fig_1.png"/> </picture> </figure> <p>From the GUI, we can change easily the viewpoint by dragging the left mouse e.g. in the figure below</p> <figure> <picture> <source media="(max-width: 480px)" srcset="/assets/img/blog/draw_mayavi/2-480.webp"/> <source media="(max-width: 800px)" srcset="/assets/img/blog/draw_mayavi/2-800.webp"/> <source media="(max-width: 1400px)" srcset="/assets/img/blog/draw_mayavi/2-1400.webp"/> <img class="img-fluid rounded z-depth-1" src="/assets/img/blog/draw_mayavi/2.png"/> </picture> </figure> <p>However, if we close the window and rerun the python code, Mayavi still usesthe <strong>default viewpoint</strong>. In this tutorial, I will show you how to obtain the code that draws the viewpoint you want and then how to put it in the python program.</p> <h1 id="find-the-code-that-generate-the-viewpoint-you-want">Find the code that generate the viewpoint you want</h1> <ul> <li>Click on the button highlighted in a red square below to open <strong>Mayavi piplepline window</strong></li> </ul> <figure> <picture> <source media="(max-width: 480px)" srcset="/assets/img/blog/draw_mayavi/3-480.webp"/> <source media="(max-width: 800px)" srcset="/assets/img/blog/draw_mayavi/3-800.webp"/> <source media="(max-width: 1400px)" srcset="/assets/img/blog/draw_mayavi/3-1400.webp"/> <img class="img-fluid rounded z-depth-1" src="/assets/img/blog/draw_mayavi/3.png"/> </picture> </figure> <figure> <picture> <source media="(max-width: 480px)" srcset="/assets/img/blog/draw_mayavi/4-480.webp"/> <source media="(max-width: 800px)" srcset="/assets/img/blog/draw_mayavi/4-800.webp"/> <source media="(max-width: 1400px)" srcset="/assets/img/blog/draw_mayavi/4-1400.webp"/> <img class="img-fluid rounded z-depth-1" src="/assets/img/blog/draw_mayavi/4.png"/> </picture> </figure> <ul> <li>Click on the <strong>red circle</strong> to open. <strong>Note:</strong> The recording box must be checked.</li> </ul> <figure> <picture> <source media="(max-width: 480px)" srcset="/assets/img/blog/draw_mayavi/5-480.webp"/> <source media="(max-width: 800px)" srcset="/assets/img/blog/draw_mayavi/5-800.webp"/> <source media="(max-width: 1400px)" srcset="/assets/img/blog/draw_mayavi/5-1400.webp"/> <img class="img-fluid rounded z-depth-1" src="/assets/img/blog/draw_mayavi/5.png"/> </picture> </figure> <ul> <li>Click on the button highlighted in a red square below to view the object along the x axis</li> </ul> <figure> <picture> <source media="(max-width: 480px)" srcset="/assets/img/blog/draw_mayavi/6-480.webp"/> <source media="(max-width: 800px)" srcset="/assets/img/blog/draw_mayavi/6-800.webp"/> <source media="(max-width: 1400px)" srcset="/assets/img/blog/draw_mayavi/6-1400.webp"/> <img class="img-fluid rounded z-depth-1" src="/assets/img/blog/draw_mayavi/6.png"/> </picture> </figure> <p>Result</p> <figure> <picture> <source media="(max-width: 480px)" srcset="/assets/img/blog/draw_mayavi/7-480.webp"/> <source media="(max-width: 800px)" srcset="/assets/img/blog/draw_mayavi/7-800.webp"/> <source media="(max-width: 1400px)" srcset="/assets/img/blog/draw_mayavi/7-1400.webp"/> <img class="img-fluid rounded z-depth-1" src="/assets/img/blog/draw_mayavi/7.png"/> </picture> </figure> <ul> <li>Then, dragging the left mouse to change to the viewpoint you want. For example:</li> </ul> <figure> <picture> <source media="(max-width: 480px)" srcset="/assets/img/blog/draw_mayavi/8-480.webp"/> <source media="(max-width: 800px)" srcset="/assets/img/blog/draw_mayavi/8-800.webp"/> <source media="(max-width: 1400px)" srcset="/assets/img/blog/draw_mayavi/8-1400.webp"/> <img class="img-fluid rounded z-depth-1" src="/assets/img/blog/draw_mayavi/8.png"/> </picture> </figure> <ul> <li>Note that on the <strong>Edit properties window</strong>, the code used to change to te corresponding viewpoint has been generated</li> </ul> <figure> <picture> <source media="(max-width: 480px)" srcset="/assets/img/blog/draw_mayavi/9-480.webp"/> <source media="(max-width: 800px)" srcset="/assets/img/blog/draw_mayavi/9-800.webp"/> <source media="(max-width: 1400px)" srcset="/assets/img/blog/draw_mayavi/9-1400.webp"/> <img class="img-fluid rounded z-depth-1" src="/assets/img/blog/draw_mayavi/9.png"/> </picture> </figure> <h1 id="put-the-generated-code-into-the-python-program">Put the generated code into the Python program</h1> <ul> <li>Use the following code to get the Mayavi <strong>scene</strong> object</li> </ul> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>figure = mlab.figure()
+scene = figure.scene
+</code></pre></div></div> <ul> <li>Replace all <code class="language-plaintext highlighter-rouge">scene.scene</code> to <code class="language-plaintext highlighter-rouge">scene</code></li> </ul> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scene.x_minus_view()
+scene.camera.position = [-1.1437838116861252, -2.116527050821497, 5.572515456581492]
+scene.camera.focal_point = [-0.04951556604879043, 0.0, 0.5]
+scene.camera.view_angle = 30.0
+scene.camera.view_up = [0.8794813509054432, 0.34100117306501826, 0.33201017059394156]
+scene.camera.clipping_range = [3.545571276948115, 8.209200934599123]
+scene.camera.compute_view_plane_normal()
+scene.render()
+</code></pre></div></div> <ul> <li>Put them together to the original Python program</li> </ul> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import numpy as np
+from mayavi import mlab
+
+n = 8
+t = np.linspace(-np.pi, np.pi, n)
+z = np.exp(1j * t)
+x = z.real.copy()
+y = z.imag.copy()
+z = np.zeros_like(x)
+
+triangles = [(0, i, i + 1) for i in range(1, n)]
+x = np.r_[0, x]
+y = np.r_[0, y]
+z = np.r_[1, z]
+t = np.r_[0, t]
+
+# ==== Code added for fixing the viewpoint ====
+figure = mlab.figure()
+scene = figure.scene
+scene.x_minus_view()
+scene.camera.position = [-1.1437838116861252, -2.116527050821497, 5.572515456581492]
+scene.camera.focal_point = [-0.04951556604879043, 0.0, 0.5]
+scene.camera.view_angle = 30.0
+scene.camera.view_up = [0.8794813509054432, 0.34100117306501826, 0.33201017059394156]
+scene.camera.clipping_range = [3.545571276948115, 8.209200934599123]
+scene.camera.compute_view_plane_normal()
+scene.render()
+# ====================
+
+mlab.triangular_mesh(x, y, z, triangles, scalars=t)
+mlab.show()
+</code></pre></div></div> <ul> <li>That’s it. Now everytime you run the Python program, Mayavi uses the defined viewpoint</li> </ul> <figure> <picture> <source media="(max-width: 480px)" srcset="/assets/img/blog/draw_mayavi/8-480.webp"/> <source media="(max-width: 800px)" srcset="/assets/img/blog/draw_mayavi/8-800.webp"/> <source media="(max-width: 1400px)" srcset="/assets/img/blog/draw_mayavi/8-1400.webp"/> <img class="img-fluid rounded z-depth-1" src="/assets/img/blog/draw_mayavi/8.png"/> </picture> </figure>]]></content><author><name></name></author><category term="tutorial"/><category term="technical-issue"/><summary type="html"><![CDATA[Note: If you have trouble installing Mayavi, you can take a look at my post: How to install Mayavi.]]></summary></entry><entry><title type="html">How to install Mayavi with Python 3 on Ubuntu 20.04 using pip or anaconda</title><link href="https://anhquancao.github.io//blog/2022/how-to-install-mayavi-with-python-3-on-ubuntu-2004-using-pip-or-anaconda/" rel="alternate" type="text/html" title="How to install Mayavi with Python 3 on Ubuntu 20.04 using pip or anaconda"/><published>2022-06-12T00:00:00+00:00</published><updated>2022-06-12T00:00:00+00:00</updated><id>https://anhquancao.github.io//blog/2022/how-to-install-mayavi-with-python-3-on-ubuntu-2004-using-pip-or-anaconda</id><content type="html" xml:base="https://anhquancao.github.io//blog/2022/how-to-install-mayavi-with-python-3-on-ubuntu-2004-using-pip-or-anaconda/"><![CDATA[<p>Despite using mayavi for a long time, I still run into problem when reinstalling mayavi. Thus, I wrote this guide on how to install mayavi and solutions to some errors that I collected.</p> <h1 id="install-mayavi-using-pip">Install mayavi using pip</h1> <ol> <li>Create conda environment to install mayavi with python 3.7 (I haven’t tested other python version) <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>conda create -y -n mayavi python=3.7 
+conda activate mayavi
+</code></pre></div> </div> </li> <li>Install numpy, which is required by mayavi <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install numpy
+</code></pre></div> </div> </li> <li>Following the <a href="https://docs.enthought.com/mayavi/mayavi/installation.html">official instruction</a> to install mayavi <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install mayavi
+pip install PyQt5
+</code></pre></div> </div> </li> <li>Set the correct ETS_TOOLKIT following the suggestion in <a href="https://github.com/enthought/mayavi/issues/595#issuecomment-366534652">this comment</a> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>export ETS_TOOLKIT=qt4
+export QT_API=pyqt5
+</code></pre></div> </div> <p>Optional: You might need to put these lines in ~/.bashrc and run <code class="language-plaintext highlighter-rouge">source ~/.bashrc</code>. These variables will be set automatically everytime you boot the computer.<br/> If you forget to set these variables ETS_TOOLKIT and QT_API, mayavi will return the following error:</p> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Traceback (most recent call last):
+  File "/home/acao/miniconda3/envs/mayavi/lib/python3.7/site-packages/tvtk/pyface/ui/qt4/scene.py", line 60, in resizeEvent
+ self._scene._renwin.update_traits()
+AttributeError: 'NoneType' object has no attribute 'update_traits'
+Aborted (core dumped)
+</code></pre></div> </div> </li> </ol> <h1 id="install-mayavi-using-conda">Install mayavi using conda</h1> <ol> <li>Install mayavi using conda: <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>conda install -c anaconda mayavi  
+</code></pre></div> </div> </li> <li>Install numba: <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install numba==0.53  
+</code></pre></div> </div> </li> <li>Install TBB version 2020.2: <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>conda install -c bioconda tbb=2020.2
+</code></pre></div> </div> </li> </ol> <p>These steps were suggested in <a href="https://github.com/astra-vision/MonoScene/issues/6#issuecomment-1009260023">this comment</a>.</p> <h1 id="collected-errors">Collected errors</h1> <ul> <li><code class="language-plaintext highlighter-rouge">pip install mayavi</code> fails at <strong>building wheel for mayavi</strong>. This error was pointed out in <a href="https://github.com/astra-vision/MonoScene/issues/3#issuecomment-998662257">this comment</a>. The reason is that the version of vtk is too new. Thus, the solution is to downgrade vtk version to 8.1.2: <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install PyQt5  
+pip install VTK==8.1.2
+pip install mayavi
+</code></pre></div> </div> </li> </ul> <h1 id="related-posts">Related posts</h1> <p>If you have trouble defining programatically the viewpoint in Mayavi, you can take a look at my post: <a href="/blog/2022/how-to-define-viewpoint-programmatically-in-mayavi/">How to define viewpoint programmatically in Mayavi</a>.</p>]]></content><author><name></name></author><category term="tutorial"/><category term="technical-issue"/><summary type="html"><![CDATA[Despite using mayavi for a long time, I still run into problem when reinstalling mayavi. Thus, I wrote this guide on how to install mayavi and solutions to some errors that I collected.]]></summary></entry></feed>
